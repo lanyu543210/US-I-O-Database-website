@@ -1,0 +1,21 @@
+<!--pivot_table.html-->
+<link href="/assets/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/pivot_table_builder.css" rel="stylesheet">
+
+<!--Navigation Bar-->
+{% extends "navibar.html" %}
+{% set active_page = "pivot_table_builder" %}
+
+<!--Table-->
+{% block body %}
+<div class="container">
+    <div class="pivot_table">
+        <h1>Pivot Table Builder</h1>
+        <div class="table">
+            {{table}}
+        </div>
+        <p class="lead"></p>
+        <!--everything here-->
+    </div>
+</div>
+{% endblock %}

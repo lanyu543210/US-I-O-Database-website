@@ -1,0 +1,20 @@
+<!--pivot_table.html-->
+
+
+<!--Navigation Bar-->
+{% extends "navibar.html" %}
+{% set active_page = "pivot_table" %}
+      
+<!--Table-->
+{% block body %}
+<div class="container">
+    <div class="pivot_table">
+        <h1>Pivot Table</h1>
+        <div class="table">
+            {{table}}
+        </div>
+        <p class="lead"></p>
+
+    </div>
+</div>
+{% endblock %}
