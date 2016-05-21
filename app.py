@@ -8,8 +8,6 @@ import jinja2
 #for row in c.execute('SELECT * FROM USIODB'):
 #    print row
 
-
-废物wuxixiang
 app = Flask(__name__, static_folder='.', static_url_path='')
 
 # Handler
