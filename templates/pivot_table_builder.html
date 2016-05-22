@@ -24,16 +24,14 @@
                         <h2>Filter</h2>
                         <ul class="nav nav-pills nav-justified">
                             <li>
-                                <div>
+                                <div class="filterName">
                                     <!--Filter name-->
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        <span data-bind="label">Select One</span>
+                                        <span data-bind="label">Choose One</span>
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" id="filterName" role="menu">
-                                        <li>
-                                            <a href="#">Period</a>
-                                        </li>
+                                        <li><a href="#">Period</a></li>
                                         <li><a href="#">Total Balance</a></li>
                                         <li><a href="#">Goods Balance</a></li>
                                         <li><a href="#">Service Balance</a></li>
@@ -48,23 +46,25 @@
                                     </ul>
                                 </div>
                             </li>
+                            <!--Filter Query-->
+
                             <li>
-                                <!--Filter Query-->
                                 <div class="filterQuery">
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        <span data-bind="label">Select One</span>
+                                        <span data-bind="label">Choose One</span>
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" id="filterQuery" role="menu">
-                                        <li>
-                                            <a href="#">Item 1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">This is a longer item that will not fit properly</a>
-                                        </li>
+                                        <li><a href="#">=</a></li>
+                                        <li><a href="#">></a></li>
+                                        <li><a href="#">>=</a></li>
+                                        <li><a href="#">&lt;</a></li>
+                                        <li><a href="#">&lt;=</a></li>
+                                        <li><a href="#">!=</a></li>
+                                        <li><a href="#">contains</a></li>
+                                        <li><a href="#">does not contatain</a></li>
+                                        <li><a href="#">is True</a></li>
+                                        <li><a href="#">is False</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -79,7 +79,6 @@
             <p class="lead"></p>
 
             <button type='button' class='btn' id='submit'> submit </button>
-
             <script>
                 var dict = {};
 
