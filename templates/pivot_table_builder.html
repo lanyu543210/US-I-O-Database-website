@@ -12,66 +12,165 @@
 {% block body %}
 
 
-
 <form action='pivot_table_builder.html' method='POST'>
 
-    <div class="container">
+    <div class="container" id="pivot_table">
         <div class="pivot_table">
-            <h1>Pivot Table Builder</h1>
-            <div class="col-sm-3">
-                <div class="panel-body">
-                    <div class="filter">
-                        <h2>Filter</h2>
-                        <ul class="nav nav-pills nav-justified">
-                            <li>
-                                <div class="filterName">
-                                    <!--Filter name-->
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        <span data-bind="label">Choose One</span>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" id="filterName" role="menu">
-                                        <li><a href="#">Period</a></li>
-                                        <li><a href="#">Total Balance</a></li>
-                                        <li><a href="#">Goods Balance</a></li>
-                                        <li><a href="#">Service Balance</a></li>
-                                        <li><a href="#">Total Exports</a></li>
-                                        <li><a href="#">Export Inc/Dec</a></li>
-                                        <li><a href="#">Goods Exports</a></li>
-                                        <li><a href="#">Services Exports</a></li>
-                                        <li><a href="#">Total Imports</a></li>
-                                        <li><a href="#">Import Inc/Dec</a></li>
-                                        <li><a href="#">Goods Imports</a></li>
-                                        <li><a href="#">Services Imports</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <!--Filter Query-->
 
-                            <li>
-                                <div class="filterQuery">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                        <span data-bind="label">Choose One</span>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" id="filterQuery" role="menu">
-                                        <li><a href="#">=</a></li>
-                                        <li><a href="#">></a></li>
-                                        <li><a href="#">>=</a></li>
-                                        <li><a href="#">&lt;</a></li>
-                                        <li><a href="#">&lt;=</a></li>
-                                        <li><a href="#">!=</a></li>
-                                        <li><a href="#">contains</a></li>
-                                        <li><a href="#">does not contatain</a></li>
-                                        <li><a href="#">is True</a></li>
-                                        <li><a href="#">is False</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+            <img src="images/pivot_table_builder.svg" alt="Pensils">
+            <h1>Pivot Table Builder</h1>
+            <div class="panel panel-default">
+                <div class="panel-heading">Properties Selector</div>
+                <div class="panel-body">
+                    <div class="container">
+
+                        <ul class="nav nav-pills">
+                            <li class="active"><a data-toggle="pill" href="#filter_panel">Filter</a></li>
+                            <li><a data-toggle="pill" href="#column_label">Column Label</a></li>
+                            <li><a data-toggle="pill" href="#aggregation">Aggregation</a></li>
                         </ul>
+
+                        <div class="tab-content">
+                            <div id="filter_panel" class="tab-pane fade in active">
+                                <h2>Filter</h2>
+                                <p>Select filter to remove the data you don't need</p>
+
+                                <!--                        Filter Pannel-->
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <div class="filterName">
+                                            <!--Filter name-->
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span data-bind="label">Choose One</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="filterName" role="menu">
+                                                <li><a href="#">Period</a></li>
+                                                <li><a href="#">Total Balance</a></li>
+                                                <li><a href="#">Goods Balance</a></li>
+                                                <li><a href="#">Service Balance</a></li>
+                                                <li><a href="#">Total Exports</a></li>
+                                                <li><a href="#">Export Inc/Dec</a></li>
+                                                <li><a href="#">Goods Exports</a></li>
+                                                <li><a href="#">Services Exports</a></li>
+                                                <li><a href="#">Total Imports</a></li>
+                                                <li><a href="#">Import Inc/Dec</a></li>
+                                                <li><a href="#">Goods Imports</a></li>
+                                                <li><a href="#">Services Imports</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!--Filter Query-->
+
+                                    <li>
+                                        <div class="filterQuery">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span data-bind="label">Choose One</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="filterQuery" role="menu">
+                                                <li><a href="#">=</a></li>
+                                                <li><a href="#">></a></li>
+                                                <li><a href="#">>=</a></li>
+                                                <li><a href="#">&lt;</a></li>
+                                                <li><a href="#">&lt;=</a></li>
+                                                <li><a href="#">!=</a></li>
+                                                <li><a href="#">contains</a></li>
+                                                <li><a href="#">does not contatain</a></li>
+                                                <li><a href="#">is True</a></li>
+                                                <li><a href="#">is False</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+
+                            <div id="column_label" class="tab-pane fade">
+                                <h3>Column Label</h3>
+                                <p>To Choose which comlumn you want to show</p>
+
+                                <!--Column Label-->
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <div class="colLabel">
+                                            <!--Filter name-->
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span data-bind="label">Choose One</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="colLabel" role="menu">
+                                                <li><a href="#">Period</a></li>
+                                                <li><a href="#">Total Balance</a></li>
+                                                <li><a href="#">Goods Balance</a></li>
+                                                <li><a href="#">Service Balance</a></li>
+                                                <li><a href="#">Total Exports</a></li>
+                                                <li><a href="#">Export Inc/Dec</a></li>
+                                                <li><a href="#">Goods Exports</a></li>
+                                                <li><a href="#">Services Exports</a></li>
+                                                <li><a href="#">Total Imports</a></li>
+                                                <li><a href="#">Import Inc/Dec</a></li>
+                                                <li><a href="#">Goods Imports</a></li>
+                                                <li><a href="#">Services Imports</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div id="aggregation" class="tab-pane fade">
+
+                                <!--Filter Pannel-->
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <div class="aggregationOf">
+                                            <!--Filter name-->
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span data-bind="label">Choose One</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="aggregationOf" role="menu">
+                                                <li><a href="#">Count of</a></li>
+                                                <li><a href="#">Sum of</a></li>
+                                                <li><a href="#">Average of</a></li>
+                                                <li><a href="#">Minimum of</a></li>
+                                                <li><a href="#">Maximum of</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!--Filter Query-->
+
+                                    <li>
+                                        <div class="aggregationCol">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span data-bind="label">Choose One</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="aggregationCol" role="menu">
+                                                <li><a href="#">Period</a></li>
+                                                <li><a href="#">Total Balance</a></li>
+                                                <li><a href="#">Goods Balance</a></li>
+                                                <li><a href="#">Service Balance</a></li>
+                                                <li><a href="#">Total Exports</a></li>
+                                                <li><a href="#">Export Inc/Dec</a></li>
+                                                <li><a href="#">Goods Exports</a></li>
+                                                <li><a href="#">Services Exports</a></li>
+                                                <li><a href="#">Total Imports</a></li>
+                                                <li><a href="#">Import Inc/Dec</a></li>
+                                                <li><a href="#">Goods Imports</a></li>
+                                                <li><a href="#">Services Imports</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
             <!--Dropdown-->
             <div class="table">
                 {{table}}
