@@ -1,36 +1,228 @@
 <!--pivot_table.html-->
+
 <link href="/assets/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/pivot_table_builder.css" rel="stylesheet">
-        <!--Navigation Bar-->
-{% extends "navibar.html" %}
-{% set active_page = "pivot_table_builder" %}
+
+<!--Navigation Bar-->
+{% extends "navibar.html" %} {% set active_page = "pivot_table_builder" %}
 
 
-        <!--Table-->
+
+
+<!--Table-->
 {% block body %}
-        
-        <div class="container">
-            <div class="pivot_table">
-                <h1>Pivot Table Builder</h1>
 
-            <div class="col-xs-3">
-              <h3 class="demo-panel-title">Select</h3>
-              <div class="select2-container form-control select select-primary select2-dropdown-open select2-container-active" id="s2id_autogen1"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-2">X-Men</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen2" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-2" id="s2id_autogen2" disabled=""></div><select class="form-control select select-primary select2-offscreen" data-toggle="select" tabindex="-1" title="">
-                <option value="0">Choose hero</option>
-                <option value="1">Spider Man</option>
-                <option value="2">Wolverine</option>
-                <option value="3">Captain America</option>
-                <option value="4" selected="">X-Men</option>
-                <option value="5">Crocodile</option>
-              </select>
-            </div>
-                <div class="select2-drop select2-display-none select2-with-searchbox select2-drop-active" style="left: 257.5px; width: 220px; top: 1072px; bottom: auto; display: block;" id="select2-drop">   <div class="select2-search">       <label for="s2id_autogen2_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-2" id="s2id_autogen2_search" placeholder="" aria-activedescendant="select2-result-label-13">   </div>   <ul class="select2-results" role="listbox" id="select2-results-2"><li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation"><div class="select2-result-label" id="select2-result-label-9" role="option"><span class="select2-match"></span>Choose hero</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation"><div class="select2-result-label" id="select2-result-label-10" role="option"><span class="select2-match"></span>Spider Man</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation"><div class="select2-result-label" id="select2-result-label-11" role="option"><span class="select2-match"></span>Wolverine</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation"><div class="select2-result-label" id="select2-result-label-12" role="option"><span class="select2-match"></span>Captain America</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable select2-highlighted" role="presentation"><div class="select2-result-label" id="select2-result-label-13" role="option"><span class="select2-match"></span>X-Men</div></li><li class="select2-results-dept-0 select2-result select2-result-selectable" role="presentation"><div class="select2-result-label" id="select2-result-label-14" role="option"><span class="select2-match"></span>Crocodile</div></li></ul></div>
-                
-                    <div class="table">
-            {{table}}
-        </div>
-                    <p class="lead"></p>
-                    <!--everything here-->
+
+<form action='pivot_table_builder.html' method='POST'>
+
+    <div class="container" id="pivot_table">
+        <div class="pivot_table">
+
+            <img src="images/pivot_table_builder.svg" alt="Pensils">
+            <h1>Pivot Table Builder</h1>
+            <div class="error_message"></div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Properties Selector</div>
+                <div class="panel-body">
+                    <div class="container">
+                        <ul class="nav nav-pills">
+                            <li class="active"><a data-toggle="pill" href="#filter_panel">Filter</a></li>
+                            <li><a data-toggle="pill" href="#column_label">Column Label</a></li>
+                            <li><a data-toggle="pill" href="#aggregation">Aggregation</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="filter_panel" class="tab-pane fade in active">
+                                <h2>Filter</h2>
+                                <p>Select filter to remove the data you don't need</p>
+
+                                <!--                        Filter Pannel-->
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <div class="filterName">
+                                            <!--Filter name-->
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span data-bind="label">Choose One</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="filterName" role="menu">
+                                                <li><a href="#">Period</a></li>
+                                                <li><a href="#">Total Balance</a></li>
+                                                <li><a href="#">Goods Balance</a></li>
+                                                <li><a href="#">Service Balance</a></li>
+                                                <li><a href="#">Total Exports</a></li>
+                                                <li><a href="#">Export Inc/Dec</a></li>
+                                                <li><a href="#">Goods Exports</a></li>
+                                                <li><a href="#">Services Exports</a></li>
+                                                <li><a href="#">Total Imports</a></li>
+                                                <li><a href="#">Import Inc/Dec</a></li>
+                                                <li><a href="#">Goods Imports</a></li>
+                                                <li><a href="#">Services Imports</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!--Filter Query-->
+
+                                    <li>
+                                        <div class="filterQuery">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span data-bind="label">Choose One</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="filterQuery" role="menu">
+                                                <li><a href="#">=</a></li>
+                                                <li><a href="#">></a></li>
+                                                <li><a href="#">>=</a></li>
+                                                <li><a href="#">&lt;</a></li>
+                                                <li><a href="#">&lt;=</a></li>
+                                                <li><a href="#">!=</a></li>
+                                                <li><a href="#">contains</a></li>
+                                                <li><a href="#">does not contatain</a></li>
+                                                <li><a href="#">is True</a></li>
+                                                <li><a href="#">is False</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+
+                            <div id="column_label" class="tab-pane fade">
+                                <h3>Column Label</h3>
+                                <p>To Choose which comlumn you want to show</p>
+
+                                <!--Column Label-->
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <div class="colLabel">
+                                            <!--Filter name-->
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span data-bind="label">Choose One</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="colLabel" role="menu">
+                                                <li><a href="#">Period</a></li>
+                                                <li><a href="#">Total Balance</a></li>
+                                                <li><a href="#">Goods Balance</a></li>
+                                                <li><a href="#">Service Balance</a></li>
+                                                <li><a href="#">Total Exports</a></li>
+                                                <li><a href="#">Export Inc/Dec</a></li>
+                                                <li><a href="#">Goods Exports</a></li>
+                                                <li><a href="#">Services Exports</a></li>
+                                                <li><a href="#">Total Imports</a></li>
+                                                <li><a href="#">Import Inc/Dec</a></li>
+                                                <li><a href="#">Goods Imports</a></li>
+                                                <li><a href="#">Services Imports</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div id="aggregation" class="tab-pane fade">
+
+                                <!--Filter Pannel-->
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <div class="aggregationOf">
+                                            <!--Filter name-->
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span data-bind="label">Choose One</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="aggregationOf" role="menu">
+                                                <li><a href="#">Count of</a></li>
+                                                <li><a href="#">Sum of</a></li>
+                                                <li><a href="#">Average of</a></li>
+                                                <li><a href="#">Minimum of</a></li>
+                                                <li><a href="#">Maximum of</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!--Filter Query-->
+
+                                    <li>
+                                        <div class="aggregationCol">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span data-bind="label">Choose One</span>
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" id="aggregationCol" role="menu">
+                                                <li><a href="#">Period</a></li>
+                                                <li><a href="#">Total Balance</a></li>
+                                                <li><a href="#">Goods Balance</a></li>
+                                                <li><a href="#">Service Balance</a></li>
+                                                <li><a href="#">Total Exports</a></li>
+                                                <li><a href="#">Export Inc/Dec</a></li>
+                                                <li><a href="#">Goods Exports</a></li>
+                                                <li><a href="#">Services Exports</a></li>
+                                                <li><a href="#">Total Imports</a></li>
+                                                <li><a href="#">Import Inc/Dec</a></li>
+                                                <li><a href="#">Goods Imports</a></li>
+                                                <li><a href="#">Services Imports</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
+            <!--Dropdown-->
+            <div class="table">
+                {{table}}
+            </div>
+            <p class="lead"></p>
+
+            <button type='button' class='btn' id='submit'> submit </button>
+            <script>
+                var dict = {};
+
+                // get dropdown auto change value
+                $(document.body).on('click', '.dropdown-menu li', function (event) {
+
+                    var $target = $(event.currentTarget);
+
+                    id = $(this).parent().prop('id');
+
+                    $target.closest('.' + id)
+                        .change(dict[id] = $.trim($target.text()))
+                        .find('[data-bind="label"]').text($target.text())
+                        .end()
+                        .children('.dropdown-toggle').dropdown('toggle');
+
+                    return false;
+                });
+
+                // submit
+                function submit_para(event) {
+                    $.ajax({
+                            url: '/pivot_table_builder.html'
+                            , type: 'POST'
+                            , data: dict
+                            , success: function () {
+                                alert("ok!");
+                            }
+                            , error: function (xhr) {
+                                $('.error_message').text("Invalid Input :(")
+                            }
+                    });
+
+                        event.preventDefault()
+                    }
+
+                    $(document).ready(
+                        function docInit() {
+                            $('#submit').click(submit_para); // call function ajaxRequest upon clicking
+                        }
+                    );
+            </script>
+            <!--everything here-->
+        </div>
+    </div>
+</form>
 {% endblock %}

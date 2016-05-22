@@ -56,14 +56,34 @@ def html_table(c):
     table+='</table>'
     return table
 
-@app.route("/pivot_table_builder.html")
+@app.route("/pivot_table_builder.html", methods = ['POST','GET'])
 def pivot_table_builder():
+    if request.method == 'POST':
+        # e.g. ImmutableMultiDict([('colLabel', u'Export Inc/Dec'), ('filterName', u'Service Balance'), ('aggregationOf', u'Minimum of'), ('aggregationCol', u'Service Balance'), ('filterQuery', u'<')])
 
+        # Check Validation
+        try:
+            dic = request.form
+            colLabel = dic['colLabel']
+            filterName = dic['filterName']
+            filterQuery = dic['filterQuery']
+            aggregationOf = dic['aggregationOf']
+            aggregationOf = dic['aggregationCol']
+        except KeyError:
+            raise RuntimeError('Wrong input')
+        
+        return render_template('pivot_table_builder')
+        
+    
+    
     return render_template('pivot_table_builder.html')
 
+@app.route("/interesting_sights.html")
+def interesting_sights():
+    return render_template('interesting_sights.html')
+	
 def table_selector():
     return false
-
 
 if __name__ == "__main__":
     app.run(debug=True, host='127.0.0.1', port=8765)
