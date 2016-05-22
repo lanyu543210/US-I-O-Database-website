@@ -38,3 +38,8 @@ body {
     width: auto;
     height: auto;
 }
+
+.error_message {
+    font-size: 25px;
+    color: red;
+}
