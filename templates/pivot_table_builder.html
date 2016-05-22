@@ -1,12 +1,7 @@
 <!--pivot_table.html-->
 
-{% set parameters = [ ('',) ] -%} {% set active_page = active_page|default('index') -%}
-
-
-
-
 <link href="/assets/bootstrap.min.css" rel="stylesheet">
-<link href="/assets/pivot_table_builder.css" rel="stylesheet">
+
 <!--Navigation Bar-->
 {% extends "navibar.html" %} {% set active_page = "pivot_table_builder" %}
 
@@ -23,63 +18,109 @@
     <div class="container">
         <div class="pivot_table">
             <h1>Pivot Table Builder</h1>
-            <ul class="nav nav-pills">
-                <!--Dropdown-->
-                <li>
-                    <div class="col-sm-3">
-                        <div class="panel-body">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    <span data-bind="label">Select One</span>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#">Item 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Another item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">This is a longer item that will not fit properly</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+            <div class="col-sm-3">
+                <div class="panel-body">
+                    <div class="filter">
+                        <h2>Filter</h2>
+                        <ul class="nav nav-pills nav-justified">
+                            <li>
+                                <div>
+                                    <!--Filter name-->
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        <span data-bind="label">Select One</span>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" id="filterName" role="menu">
+                                        <li>
+                                            <a href="#">Period</a>
+                                        </li>
+                                        <li><a href="#">Total Balance</a></li>
+                                        <li><a href="#">Goods Balance</a></li>
+                                        <li><a href="#">Service Balance</a></li>
+                                        <li><a href="#">Total Exports</a></li>
+                                        <li><a href="#">Export Inc/Dec</a></li>
+                                        <li><a href="#">Goods Exports</a></li>
+                                        <li><a href="#">Services Exports</a></li>
+                                        <li><a href="#">Total Imports</a></li>
+                                        <li><a href="#">Import Inc/Dec</a></li>
+                                        <li><a href="#">Goods Imports</a></li>
+                                        <li><a href="#">Services Imports</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <!--Filter Query-->
+                                <div class="filterQuery">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        <span data-bind="label">Select One</span>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" id="filterQuery" role="menu">
+                                        <li>
+                                            <a href="#">Item 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Another item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">This is a longer item that will not fit properly</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-            </ul>
-            
+                </div>
+            </div>
             <!--Dropdown-->
             <div class="table">
                 {{table}}
             </div>
             <p class="lead"></p>
-            
-            <button onclick="myFunction()"> submit </button>
-            
+
+            <button type='button' class='btn' id='submit'> submit </button>
+
             <script>
+                var dict = {};
+
+                // get dropdown auto change value
                 $(document.body).on('click', '.dropdown-menu li', function (event) {
 
                     var $target = $(event.currentTarget);
 
-                    $target.closest('.btn-group')
+                    id = $(this).parent().prop('id');
+
+                    $target.closest('.' + id)
+                        .change(dict[id] = $.trim($target.text()))
                         .find('[data-bind="label"]').text($target.text())
                         .end()
                         .children('.dropdown-toggle').dropdown('toggle');
+
                     return false;
                 });
-                
-                function myFunction() {
-                    aler($(".btn-group span").text())
-                        $(".btn-group span").text().ajaxSubmit({url: 'pivot_table_builder.html', type: 'post'})
+
+                // submit
+                function submit_para(event) {
+                    $.ajax({
+                        url: '/pivot_table_builder.html'
+                        , type: 'POST'
+                        , data: dict
+                        , success: function () {
+                            alert("ok!");
+                        }
+                    });
+
+                    event.preventDefault()
+                }
+
+                $(document).ready(
+                    function docInit() {
+                        $('#submit').click(submit_para); // call function ajaxRequest upon clicking
                     }
-                
+                );
             </script>
-
             <!--everything here-->
-
         </div>
     </div>
 </form>
-        {% endblock %}
+{% endblock %}

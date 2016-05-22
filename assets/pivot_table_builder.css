@@ -17,3 +17,7 @@ body {
     height: auto;
 }
 
+.filterName_span {
+    border-color: fuchsia;
+    border: 10px;
+}

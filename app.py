@@ -59,13 +59,12 @@ def html_table(c):
 @app.route("/pivot_table_builder.html", methods = ['POST','GET'])
 def pivot_table_builder():
     if request.method == 'POST':
-        print(request.form)
+        print("request:",request.form)
     
     return render_template('pivot_table_builder.html')
 
 def table_selector():
     return false
-
 
 if __name__ == "__main__":
     app.run(debug=True, host='127.0.0.1', port=8765)
