@@ -1,0 +1,164 @@
+<script src="/assets/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+{% extends "navibar.html" %}
+{% set active_page = "interesting_sights" %}
+
+
+
+
+{% block body %}
+<center id="head"><font size="10">Interesting Sights</font></center>
+
+<br></br>
+<br></br>
+
+<div class="row">
+	<div class="col-lg-6">
+		<p><b><i>In the past 23 years, the negative balance of payments of US increase dramatically (Imports minus Exports)</i></b></p>
+		<br></br>
+		<p><font size="3">The negative difference between import and export (total goods and services) of US international trade 2015 increase almost 14 times as 1992 which mean it create a huge gap between import and export.</font></p>
+	</div>
+	<div id="container" style="width:600px;height:300px" class="col-lg-6"></div>
+</div>
+
+<br></br>
+<br></br>
+<br></br>
+
+<div class="row">
+	<div class="col-lg-6">
+		<p><b><i>The goods gap (imports minus exports) actually causes the negative balance of payments of US</i></b></p>
+		<br></br>
+		<p><font size="3">In fact, the balance of services is always perform positively in the past 23 years.(also have a stable increasing trend). However, the balance of goods creates big enormous negative gap after cover the positive value from balance of service.</font></p>
+	</div>
+	<div id="container1"></div>
+</div>
+
+<br></br>
+<br></br>
+<br></br>
+
+<div class="row">
+	<div class="col-lg-6">
+	</div>
+	<div></div>
+</div>
+
+<br></br>
+<br></br>
+<br></br>
+
+<div class="row">
+	<div class="col-lg-6">
+	</div>
+	<div></div>
+</div>
+
+<br></br>
+<br></br>
+<br></br>
+
+<div class="row">
+	<div class="col-lg-6">
+	</div>
+	<div></div>
+</div>
+
+<br></br>
+<br></br>
+<br></br>
+
+<div class="row">
+	<div class="col-lg-6">
+	</div>
+	<div></div>
+</div>
+
+<script>
+$(function () {
+    var charts = new Highcharts.Chart({
+        chart: {
+            renderTo: container,
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+			marginTop: 40,
+            type: 'pie'
+        },
+        title: {
+            text: 'Browser market shares January, 2015 to May, 2015'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: [{
+                name: 'MI',
+                y: 56.33
+            }, {
+                name: 'Chrome',
+                y: 24.03,
+                sliced: true,
+                selected: true
+            }, {
+                name: 'Firefox',
+                y: 10.38
+            }, {
+                name: 'Safari',
+                y: 4.77
+            }, {
+                name: 'Opera',
+                y: 0.91
+            }, {
+                name: 'Proprietary or Undetectable',
+                y: 0.2
+            }]
+        }]
+    });
+});
+</script>
+<script>
+$(function () {
+    var container = document.createElement('h1');
+
+    window.chart = new Highcharts.Chart({
+        chart: {
+            renderTo: container1,
+            height: 300,
+			marginTop: 60,
+			width: 600
+        },
+		title:{
+			text: 'just a graph'
+		},
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+
+        series: [{
+            data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+        }]
+    });
+});
+</script>
+	
+
+
+
+{% endblock %}

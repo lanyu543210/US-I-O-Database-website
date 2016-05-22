@@ -61,6 +61,10 @@ def pivot_table_builder():
 
     return render_template('pivot_table_builder.html')
 
+@app.route("/interesting_sights.html")
+def interesting_sights():
+    return render_template('interesting_sights.html')
+	
 def table_selector():
     return false
 
